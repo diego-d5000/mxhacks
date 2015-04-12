@@ -147,10 +147,11 @@ var c=0;
 				map: map,
 				icon:icono 
 			});
+			actualizar();
 			markers.push(marker);
 	}
 	
-	var T=3*g+2*m+c;
+	var T=g+m+c;
 	var color;
 	var color2;
 	if(T<7 && g<2){
@@ -184,8 +185,19 @@ strokeColor: color2,
 	  
 	}
 	
+function actualizar(g,m,c){
+		
+		g1=document.getElementById("countG");
+		m1=document.getElementById("countM");
+		c1=document.getElementById("countP");
+		g1.innerHTML=g;
+		m1.innerHTML=m;
+		c1.innerHTML=c;
+}
+	
 function update() {
   setAllMap(null);
+  actualizar();
 }
 function setAllMap(map) {
   for (var i = 0; i < markers.length; i++) {

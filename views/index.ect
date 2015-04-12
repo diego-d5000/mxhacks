@@ -45,7 +45,7 @@
 		var map;
 		var infoWindow;
 		var service;
-		
+		var markers = [];
 		
 		
 	function initialize() {
@@ -64,6 +64,7 @@
 				map: map,
 				title: ' '
 			});
+			markers.push(marker);
 			var populationOptions = {
 		  strokeColor: '#000',
 		  strokeOpacity: 0.3,
@@ -76,6 +77,7 @@
 		};
 		// Add the circle for this city to the map.
 		cityCircle = new google.maps.Circle(populationOptions);
+	  	markers.push(cityCircle);
 	  
 	  
 		  
@@ -145,6 +147,7 @@ var c=0;
 				map: map,
 				icon:icono 
 			});
+			markers.push(marker);
 	}
 	
 	var T=3*g+2*m+c;
@@ -177,9 +180,18 @@ strokeColor: color2,
 		};
 		// Add the circle for this city to the map.
 		cityCircle = new google.maps.Circle(populationOptions);
+		markers.push(cityCircle);
+	  
 	}
 	
-	
+function update() {
+  setAllMap(null);
+}
+function setAllMap(map) {
+  for (var i = 0; i < markers.length; i++) {
+    markers[i].setMap(map);
+  }
+}	
   	
 google.maps.event.addDomListener(window, 'load', initialize);
 
